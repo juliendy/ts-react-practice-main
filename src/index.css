@@ -3,3 +3,4 @@ html,
 #root {
   height: 100%;
 }
+/* because of divs wrapping eachother up, we have to set these to the same height as in app.css */
