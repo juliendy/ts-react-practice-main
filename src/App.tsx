@@ -3,9 +3,10 @@ import reactLogo from "./assets/react.svg";
 import "./App.css";
 
 function App() {
-    // important to type the things we store in the state. ('') emptry string would also work.
+    // important to type the things we store in the state. <string> > emptry string < would also work.
     const [colour, setColour] = useState("")
     const [answers, setAnswers] = useState<string[]>([])
+    const [isWrongSelection, setIsWrongSelection] = useState(false)
 
     const getRandomColour = () => {
         // prob not the most effective way but creating an array based on hexcolor codes to then return a random colour value
@@ -61,12 +62,10 @@ function App() {
             <div
                 className="guess-me"
                 // colour is going to change dynamically depending on the state
-                style={{ background: colour }}
-                // NOT WORKING ATM
-                {...answers.map((answer )=> (
+                style={{ background: colour }}></div>
+                {answers.map((answer )=> (
                   <button onClick={() => handleAnswerClicked(answer)} key={answer}>{answer}</button>
                 ))}
-            ></div>
         </div>
     );
 }
