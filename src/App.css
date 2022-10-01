@@ -12,7 +12,24 @@
 }
 
 .guess-me {
-  width: 200px;
+  width: 335px;
   height: 200px;
   /* background-color: blue; */
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+button + button {
+  margin-left: 20px;
+}
+
+.wrong {
+  color: red;
+  font-size: 24px;
+  text-align: center;
 }

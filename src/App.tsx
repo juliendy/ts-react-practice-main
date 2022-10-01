@@ -4,9 +4,9 @@ import "./App.css";
 
 function App() {
     // important to type the things we store in the state. <string> > emptry string < would also work.
-    const [colour, setColour] = useState("")
-    const [answers, setAnswers] = useState<string[]>([])
-    const [isWrongSelection, setIsWrongSelection] = useState(false)
+    const [colour, setColour] = useState("");
+    const [answers, setAnswers] = useState<string[]>([]);
+    const [isWrongSelection, setIsWrongSelection] = useState(false);
 
     const getRandomColour = () => {
         // prob not the most effective way but creating an array based on hexcolor codes to then return a random colour value
@@ -42,30 +42,42 @@ function App() {
         const actualColour = getRandomColour();
         setColour(actualColour);
         setAnswers(
-            [actualColour, getRandomColour(), getRandomColour()].sort(() =>
-                0.5 - Math.random()
+            [actualColour, getRandomColour(), getRandomColour()].sort(
+                () => 0.5 - Math.random()
             )
         );
     }, []);
 
     function handleAnswerClicked(answer: string) {
-      if (answer === colour) {
-        // TODO: guessed the correct answer
-      } else {
-        // TODO: guessed the incorrect answer
-      }
+        if (answer === colour) {
+            // TODO: guessed the correct answer
+            setIsWrongSelection(false);
+            // TODO: reselect colours
+        } else {
+            // TODO: guessed the incorrect answer
+            setIsWrongSelection(true);
+        }
     }
 
     return (
         <div className="App">
-            {/* create dynamic state to then interpolate the state depending on color */}
-            <div
-                className="guess-me"
-                // colour is going to change dynamically depending on the state
-                style={{ background: colour }}></div>
-                {answers.map((answer )=> (
-                  <button onClick={() => handleAnswerClicked(answer)} key={answer}>{answer}</button>
+            <div>
+                <div
+                    // create dynamic state to then interpolate the state depending on color
+                    className="guess-me"
+                    // colour is going to change dynamically depending on the state
+                    style={{ background: colour }}
+                ></div>
+                {answers.map((answer) => (
+                    <button
+                        onClick={() => handleAnswerClicked(answer)}
+                        key={answer}
+                    >
+                        {answer}
+                    </button>
                 ))}
+                {isWrongSelection && <div className='wrong'>Wrong Answer</div>}
+            </div>
         </div>
     );
 }
